@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Expenses from "./components/Expenses";
 
-function App() {
+const App = () => {
+  
+  const addNewExpense = () => {
+    <Expenses items={expenses} />
+  }
+
+  const expenses = [
+    {
+      id: 'e1',
+      title: 'Juno College',
+      cost: 14482.50,
+      date: new Date(2022, 4, 1),
+    },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Steve's Expense Tracker</h2>
+      <Expenses items={expenses} />
+      <div>
+      <button onClick={addNewExpense}>Add Expense</button>
+      </div>
     </div>
   );
 }
