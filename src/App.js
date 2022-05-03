@@ -1,11 +1,9 @@
 import Expenses from "./components/Expenses";
+import ExpenseItem from "./components/ExpenseItem";
+import firebase from "./firebase";
+import ExpenseForm from "./components/ExpenseForm";
 
 const App = () => {
-  
-  const addNewExpense = () => {
-    <Expenses items={expenses} />
-  }
-
   const expenses = [
     {
       id: 'e1',
@@ -15,12 +13,16 @@ const App = () => {
     },
   ];
 
+  const addExpenseHandler = expense => {
+    console.log('In App.js');
+    console.log(expenses);
+  }
+
   return (
     <div>
       <h2>Steve's Expense Tracker</h2>
-      <Expenses items={expenses} />
+      <Expenses addExpense={addExpenseHandler} />
       <div>
-      <button onClick={addNewExpense}>Add Expense</button>
       </div>
     </div>
   );
