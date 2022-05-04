@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Expenses from './components/Expenses';
+import IndividualExpense from './components/IndividualExpense';
 
-function App() {
+const exampleExpense = [
+  {
+    id: '1',
+    expenseName: 'Juno College',
+    cost: 14482.50,
+    date: new Date(2022, 4, 20),
+  },
+];
+
+const App = () => {
+const [expenses, setExpenses] = useState(exampleExpense);
+
+const addExpense = (expense) => {
+  setExpenses((priorExpenses) =>
+    {return [expense, ...priorExpenses];
+    });
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Steve's Expense Tracker</h2>
+      {/* <IndividualExpense addExpense={addExpense}/> */}
+      <Expenses eachExpense={expenses} />
     </div>
   );
 }
