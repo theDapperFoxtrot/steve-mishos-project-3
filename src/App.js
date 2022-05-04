@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import Expenses from './components/Expenses';
+import ExampleExpense from './components/ExampleExpense';
 import IndividualExpense from './components/IndividualExpense';
 
 const exampleExpense = [
   {
-    id: '1',
+    id: 'i1',
     expenseName: 'Juno College',
     cost: 14482.50,
     date: new Date(2022, 4, 20),
@@ -24,7 +24,7 @@ const addExpense = (expense) => {
     <div>
       <h2>Steve's Expense Tracker</h2>
       {/* <IndividualExpense addExpense={addExpense}/> */}
-      <Expenses eachExpense={expenses} />
+      <ExampleExpense eachExpense={expenses} />
     </div>
   );
 }

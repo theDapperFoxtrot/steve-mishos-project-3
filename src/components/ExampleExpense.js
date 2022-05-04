@@ -1,10 +1,11 @@
 import IndividualExpense from "./IndividualExpense";
 
-const Expenses = (props) => {
+const ExampleExpense = (props) => {
   return (
     <div>
       {props.eachExpense.map(each => 
-      <IndividualExpense 
+      <IndividualExpense
+      key={each.id}
       date={each.date} 
       expenseName={each.expenseName} 
       cost={each.cost} 
@@ -13,4 +14,4 @@ const Expenses = (props) => {
   );
 }
 
-export default Expenses;
+export default ExampleExpense;
