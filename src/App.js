@@ -23,7 +23,7 @@ const addExpense = (expense) => {
   return (
     <div>
       <h2>Steve's Expense Tracker</h2>
-      {/* <IndividualExpense addExpense={addExpense}/> */}
+      <IndividualExpense addExpense={addExpense}/>
       <ExampleExpense eachExpense={expenses} />
     </div>
   );
