@@ -1,28 +1,16 @@
-import ExpenseForm from './ExpenseForm';
-import firebase from '../firebase';
-import { getDatabase, ref, push, set } from "firebase/database";
+import IndividualExpense from "./IndividualExpense";
 
 const Expenses = (props) => {
-  const savedExpenseEntry = (savedExpenseEntry) => {
-    const expenseEntry = {
-      ...savedExpenseEntry,
-    };
-    props.addExpense(expenseEntry);
-  };
-
-
-// Create a new post reference with an auto-generated id
-const database = getDatabase();
-const postListRef = ref(database);
-const newPostRef = push(postListRef);
-set(newPostRef, {
-    // ...
-});
-  return(
-  <div>
-    <ExpenseForm savedExpenseEntry={savedExpenseEntry} />
-  </div>
-  )
+  return (
+    <div>
+      {props.eachExpense.map(each => 
+      <IndividualExpense 
+      date={each.date} 
+      expenseName={each.expenseName} 
+      cost={each.cost} 
+      />)}
+    </div>
+  );
 }
 
 export default Expenses;

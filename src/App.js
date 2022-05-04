@@ -1,29 +1,30 @@
-import Expenses from "./components/Expenses";
-import ExpenseItem from "./components/ExpenseItem";
-import firebase from "./firebase";
-import ExpenseForm from "./components/ExpenseForm";
+import { useState } from 'react';
+import Expenses from './components/Expenses';
+import IndividualExpense from './components/IndividualExpense';
+
+const exampleExpense = [
+  {
+    id: '1',
+    expenseName: 'Juno College',
+    cost: 14482.50,
+    date: new Date(2022, 4, 20),
+  },
+];
 
 const App = () => {
-  const expenses = [
-    {
-      id: 'e1',
-      title: 'Juno College',
-      cost: 14482.50,
-      date: new Date(2022, 4, 1),
-    },
-  ];
+const [expenses, setExpenses] = useState(exampleExpense);
 
-  const addExpenseHandler = expense => {
-    console.log('In App.js');
-    console.log(expenses);
-  }
+const addExpense = (expense) => {
+  setExpenses((priorExpenses) =>
+    {return [expense, ...priorExpenses];
+    });
+}
 
   return (
     <div>
       <h2>Steve's Expense Tracker</h2>
-      <Expenses addExpense={addExpenseHandler} />
-      <div>
-      </div>
+      {/* <IndividualExpense addExpense={addExpense}/> */}
+      <Expenses eachExpense={expenses} />
     </div>
   );
 }

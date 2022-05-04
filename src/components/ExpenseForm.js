@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react";
 
 const ExpenseForm = (props) => {
   const [date, setDate] = useState('');
@@ -30,7 +30,6 @@ const ExpenseForm = (props) => {
     setDate('');
     setExpenseName('');
     setCost('');
-
   }
 
   return(
