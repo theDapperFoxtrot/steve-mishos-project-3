@@ -1,32 +1,42 @@
-import { useState } from 'react';
-import Expenses from './components/Expenses';
-import IndividualExpense from './components/IndividualExpense';
-
-const exampleExpense = [
-  {
-    id: '1',
-    expenseName: 'Juno College',
-    cost: 14482.50,
-    date: new Date(2022, 4, 20),
-  },
-];
+import { useEffect, useState } from "react";
+import DisplayExpense from "./components/DisplayExpense";
+import IndividualExpense from "./components/IndividualExpense";
+import { onValue, update } from "firebase/database";
+import dbRef from "./firebase";
 
 const App = () => {
-const [expenses, setExpenses] = useState(exampleExpense);
+	const [expenses, setExpenses] = useState([]);
 
-const addExpense = (expense) => {
-  setExpenses((priorExpenses) =>
-    {return [expense, ...priorExpenses];
-    });
-}
+	useEffect(() => {
+		onValue(dbRef, (response) => {
+			const values = response.val();
 
-  return (
-    <div>
-      <h2>Steve's Expense Tracker</h2>
-      {/* <IndividualExpense addExpense={addExpense}/> */}
-      <Expenses eachExpense={expenses} />
-    </div>
-  );
-}
+			if (values?.data) {
+				setExpenses(values.data);
+			}
+		});
+	}, []);
+
+	const addExpense = (expense) => {
+		const newData = [...expenses, expense];
+		setExpenses(newData);
+		update(dbRef, { data: newData });
+	};
+
+	const removeExpense = (expenseIndex) => {
+		const newData = [...expenses];
+		newData.splice(expenseIndex, 1);
+		setExpenses(newData);
+		update(dbRef, { data: newData });
+	};
+
+	return (
+		<div>
+			<h2>Steve's Expense Tracker</h2>
+			<IndividualExpense addExpense={addExpense} />
+			<DisplayExpense expenses={expenses} removeExpense={removeExpense} />
+		</div>
+	);
+};
 
 export default App;
