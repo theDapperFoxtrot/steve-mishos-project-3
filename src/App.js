@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import DisplayExpense from "./components/DisplayExpense";
 import IndividualExpense from "./components/IndividualExpense";
-// Import the functions you need from the SDKs you need
 import { onValue, update } from "firebase/database";
 import dbRef from "./firebase";
 
 const App = () => {
 	const [expenses, setExpenses] = useState([]);
 
-	//receiving
 	useEffect(() => {
 		onValue(dbRef, (response) => {
 			const values = response.val();
