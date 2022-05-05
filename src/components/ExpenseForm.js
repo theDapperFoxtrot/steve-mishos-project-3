@@ -6,11 +6,11 @@ const ExpenseForm = (props) => {
   const [cost, setCost] = useState('');
   
   const dateHandler = (event) => {
-    setDate(event.target.value)
+    setDate(event.target.value);
   }
 
   const expenseNameHandler = (event) => {
-    setExpenseName(event.target.value)
+    setExpenseName(event.target.value);
   }
 
   const costHandler = (event) => {
